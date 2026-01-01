@@ -147,7 +147,8 @@ void delete_playlist(Playlist *playlist)
  */
 int main()
 {
-    Playlist *myPlaylist = init_playlist(&myPlaylist);
+    Playlist *myPlaylist;
+    init_playlist(&myPlaylist);
 
     add_song(myPlaylist, "Crawling", "LinkingPark");
     print_playlist(myPlaylist);
@@ -160,7 +161,6 @@ int main()
     print_playlist(myPlaylist);
 
     delete_playlist(myPlaylist);
-    free(playlist);
 
     return 0;
 }
