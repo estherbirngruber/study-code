@@ -9,29 +9,40 @@ int main () {
     }
     printf("\n");
     for (i=8; i>0; i--){
-        printf("%d", i);   //Zahlen links
+        printf(" ");
         for (c='A'; c<='H'; c++){
-            if (i%2==0){
-                if (c%2!=0){
-                    printf("|###");
+            printf("+---");
+        }
+        printf("+");
+        printf("\n");
+        printf("%d", i);   //Zahlen links
+        for (c='A'; c<='H'; c++){       
+            if (i%2==0){                //für gerade zahlen 
+                if (c%2!=0){            //bei jedem "ungeraden" Buchstaben
+                    printf("|###");     //schwarze Felder 
                 }
                 else {
-                    printf("|   ");
+                    printf("|   ");     //ansonsten leere Felder
                 }
             }
-            else {
-                if (c%2==0){
-                    printf("|###");
+            else {                      //für ungerade Zahlen
+                if (c%2==0){            //an jedem "geraden" Buchstaben
+                    printf("|###");     //schwarze Felder
                 }
                 else {
-                    printf("|   ");
+                    printf("|   ");     //ansonsten leere Felder
                 }
             }
-            //printf("");
         }
         printf("|%d \n", i);  // zahlen rechts 
     }
-    
-    
+    printf(" ");
+        for (c='A'; c<='H'; c++){
+            printf("+---");
+        }
+        printf("+\n");
+    for ( c='A'; c<='H'; c++){
+        printf("   %c", c);
+    }
     getchar ();
 }
