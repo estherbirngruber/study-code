@@ -46,7 +46,7 @@ int main(){
         }
         break;
         default:
-            printf("\nWrong Operator");
+            printf("\ninvalid operation");
         break;
     }
     getchar();
