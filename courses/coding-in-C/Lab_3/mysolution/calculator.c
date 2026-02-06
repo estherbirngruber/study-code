@@ -8,7 +8,7 @@ int main(){
 
     printf ("type your first number: ");
     scanf("%f", &first_number);
-    getchar();
+    getchar();  //eigentlich nicht nötig
 
     printf ("\ntype in your second number: ");
     scanf("%f", &second_number);
