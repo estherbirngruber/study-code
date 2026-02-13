@@ -17,20 +17,7 @@
             },
             "problemMatcher": [
                 "$gcc"
-            ]
-        },
-        {
-            "label": "build (c++)",
-            "type": "shell",
-            "command": "g++",
-            "args": [
-                "-std=c++20",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
             ],
-<<<<<<< HEAD
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -56,11 +43,7 @@
             ],
             "group": "build",
             "detail": "compiler: C:/msys64/ucrt64/bin/gcc.exe"
-=======
-            "problemMatcher": [
-                "$gcc"
-            ]
->>>>>>> c6be4a87f1af1b3be36bf8f8a31221cf8fe6cdf4
         }
-    ]
+    ],
+    "version": "2.0.0"
 }
