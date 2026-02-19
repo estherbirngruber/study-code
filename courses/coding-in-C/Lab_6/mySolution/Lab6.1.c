@@ -2,13 +2,13 @@
 #include <stdlib.h>
 
 int main() {
-    FILE *file = fopen("Section1.txt", "r");
+    FILE *file = fopen("Section1.txt", "w");
 
-    char c[100];
-    fgets(c, 100, file);
-    printf("%s",c);
-    getchar();
+    int x = 14;
+    char c = 'S';
+    float f = 12.13;
+
+    fprintf(file," %d %c %.2f", x,c,f);
     fclose(file);
-
 }
 
