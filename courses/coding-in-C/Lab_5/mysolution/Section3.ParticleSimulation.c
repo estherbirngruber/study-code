@@ -5,7 +5,7 @@
 
 int main (){
 
-    int array [] = {0, 0, 1, 0, 1, 0 , 1, 0, 0, 0};
+    int array [10] = {0, 0, 1, 0, 1, 0 , 1, 0, 0, 0};
     int *p1 = array;
     int i;
     
