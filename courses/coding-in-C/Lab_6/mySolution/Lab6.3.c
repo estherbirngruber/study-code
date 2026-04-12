@@ -21,6 +21,17 @@ void read_file (FILE *file, struct Sensor *sensor){
     }
 }
 
+void objectdetection (struct Sensor *sensor){
+    int i;
+    for (i=0; i<3000; i++){
+        if (sensor->data[i].probability > sensor->threshold){
+            sensor->object_detection[i] = 1;
+        }else{
+            sensor->object_detection[i] = 0;
+        }
+    }
+}
+
 int main () {
     FILE *fileSensor1 = fopen ("sensor1.txt", "r");
     FILE *fileSensor2 = fopen ("sensor2.txt", "r");
@@ -30,6 +41,9 @@ int main () {
 
     read_file(fileSensor1, &sensor1);
     read_file(fileSensor2, &sensor2);
+
+    objectdetection(&sensor1);
+    objectdetection(&sensor2);
 
     fclose(fileSensor1);
     fclose(fileSensor2);
