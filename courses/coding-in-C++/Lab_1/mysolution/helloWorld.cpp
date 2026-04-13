@@ -1,7 +1,14 @@
 #include <iostream>
+#include "helloheader.hpp"
+
 using namespace std;
 
+void printFromHeader() {
+    cout << "Hello from .hpp";
+    return;
+}
+
 int main (){
-    cout << "Hello World!";
+    printFromHeader();
     return 0;
 }
