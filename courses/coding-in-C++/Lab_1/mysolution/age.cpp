@@ -22,17 +22,24 @@ int main (){
     unsigned int age;
     std::cout << "Please enter your age: ";
     std::cin >> age;
-    while (std::cin.fail()){
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
-        std::cout << "invalid number, please enter your age: ";
-        std::cin >> age;
+    
+    while (true){
+
+        if (std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "invalid number, please enter your age: ";
+            std::cin >> age;
+            continue;
+        }
+        if (age > 120){
+            std::cout << "impossible age, please enter your age: ";
+            std::cin >> age;
+            continue;
+        }
+        break;
     }
-    while (age < 0 || age >120){
-        std::cout << "impossible age, please enter your age: ";
-        std::cin >> age;
-    }
-    std::cout << "You are " <<age << " years old." << std::endl;
+    std::cout << "You are " << age << " years old." << std::endl;
     if (validation::isSenior(age)){
         std::cout << "That means you are a senior citizen.";
     } else if (validation::isAdult(age))
