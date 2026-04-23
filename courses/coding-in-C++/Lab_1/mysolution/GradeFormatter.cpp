@@ -2,12 +2,12 @@
 #include <cstdint>
 #include <string>
 
-void readStudentData(std::string& name, int& homework, int& midterm, int& finalExam){
+void readStudentData(std::string& name, int& homework, int& midterm, int& finalExam, int& score){
     std::cout << ("Enter student name: ");
     std::getline(std::cin, name);
     std::cout << ("Type in the following scores of the student");
     std::cout << std::endl << ("Homework score: ");
-    std::cin >> homework;
+    std::cin >> score;
     while (true){
         if (std::cin.fail()){
             std::cin.clear();
@@ -61,6 +61,24 @@ void readStudentData(std::string& name, int& homework, int& midterm, int& finalE
         break;
     }
     std::cout << homework << (" ") << midterm << (" ") << finalExam;
+}
+
+void rangeCheck (int& score){
+    while (true){
+        if(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << ("Invalid input.");
+            std::cin >> score;
+            continue;
+        }
+        if (0 > score || score > 100){
+            std::cout << ("invalid score.");
+            std::cin >> score;
+            continue;
+        }
+        break;
+    }
 }
 
 int main(){
