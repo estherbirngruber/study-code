@@ -5,15 +5,19 @@ class Note {
     private:
         std::string* text;
     public:
-        Note(std::string) {
-            std::cout << "Type in your message: "
-            std::cin >> std::string* text;
+        Note(std::string text) {
+            while (true) {
+                std::cout << ("Type in your message: ");
+                if (std::getline(std::cin, text)){
+                break;
+                }
+            }
         }
         ~Note() {
-            delete std::string* text;
+            delete text;
         }
         void display(){
-            std::cout << ""
+            std::cout << ("");
         }
 };
 
