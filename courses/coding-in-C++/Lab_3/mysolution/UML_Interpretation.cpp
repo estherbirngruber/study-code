@@ -13,8 +13,11 @@ class User {
         void printInfo(){
             std::cout << "Name: " << name << ", ID: " << id << std::endl;
         }
-
 };
+
+class Student : public User {
+    
+}
 
 int main () {
 
