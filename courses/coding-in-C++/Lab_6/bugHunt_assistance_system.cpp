@@ -60,15 +60,16 @@ EmergencyBrakeSystem::EmergencyBrakeSystem(double critical_distance)
 {
 }
 
-void EmergencyBrakeSystem::evaluate(Vehicle &vehicle,
-                                    const DistanceSensor &front_sensor) const
+void EmergencyBrakeSystem::evaluate(
+    Vehicle &vehicle,
+    const std::shared_ptr<DistanceSensor>& front_sensor) const
 {
-    if (!front_sensor.is_active())
+    if (!front_sensor || !front_sensor->is_active())
     {
         return;
     }
 
-    if (front_sensor.get_distance() > critical_distance_m)
+    if (front_sensor->get_distance() <= critical_distance_m)
     {
         std::cout << "[EmergencyBrakeSystem] Emergency braking triggered.\n";
         vehicle.brake(30.0);
@@ -109,15 +110,16 @@ AdaptiveCruiseControl::AdaptiveCruiseControl(double target_speed,
 {
 }
 
-void AdaptiveCruiseControl::evaluate(Vehicle &vehicle,
-                                     const DistanceSensor &front_sensor) const
+void AdaptiveCruiseControl::evaluate(
+    Vehicle &vehicle,
+    const std::shared_ptr<DistanceSensor>& front_sensor) const
 {
-    if (!front_sensor.is_active())
+    if (!front_sensor || !front_sensor->is_active())
     {
         return;
     }
 
-    if (front_sensor.get_distance() < minimum_distance_m)
+    if (front_sensor->get_distance() < minimum_distance_m)
     {
         std::cout << "[AdaptiveCruiseControl] Vehicle ahead is close. Accelerating.\n";
         vehicle.accelerate(5.0);
@@ -139,16 +141,16 @@ ParkingAssistant::ParkingAssistant(double warning_distance)
 {
 }
 
-void ParkingAssistant::add_sensor(DistanceSensor *sensor)
+void ParkingAssistant::add_sensor(std::shared_ptr<DistanceSensor> sensor)
 {
     sensors.push_back(sensor);
 }
 
 void ParkingAssistant::print_warnings() const
 {
-    for (DistanceSensor *sensor : sensors)
+    for (const auto& sensor : sensors)
     {
-        if (sensor != nullptr &&
+        if (sensor &&
             sensor->is_active() &&
             sensor->get_distance() < warning_distance_m)
         {

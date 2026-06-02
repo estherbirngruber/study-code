@@ -25,7 +25,6 @@ void Vehicle::accelerate(double amount_kmh)
     }
 
     speed_kmh += amount_kmh;
-
     brake_light_on = false;
 }
 
@@ -41,7 +40,7 @@ void Vehicle::brake(double amount_kmh)
 
     if (speed_kmh < 0.0)
     {
-        speed_kmh = amount_kmh;
+        speed_kmh = 0.0;
     }
 }
 
@@ -70,7 +69,7 @@ double Vehicle::get_lane_offset() const
     return lane_offset_m;
 }
 
-std::string &Vehicle::get_model()
+const std::string &Vehicle::get_model() const
 {
     return model;
 }
@@ -86,5 +85,8 @@ void Vehicle::print_status() const
     std::cout << "Speed: " << speed_kmh << " km/h\n";
     std::cout << "Steering angle: " << steering_angle << " degrees\n";
     std::cout << "Lane offset: " << lane_offset_m << " m\n";
-    std::cout << "Brake light: " << std::boolalpha << brake_light_on << "\n\n";
+    std::cout << "Brake light: "
+              << std::boolalpha
+              << brake_light_on
+              << "\n\n";
 }
