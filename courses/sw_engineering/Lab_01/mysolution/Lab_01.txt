@@ -1,0 +1,75 @@
+#### 1. Software Development Life Cycle
+
+C: The project team determines what functionality students need	                Requirements Engineering
+E: Architects define components and interfaces	                                Design
+A: Developers implement the connection search algorithm	                        Implementation
+G: Testers check the complete app against the specified requirements	        Testing (system test)
+B: Students check whether the app meets their expectations	                    Testing (acceptance test)
+D: The app is released to the university app store	                            Deployment
+F: Developers fix defects and adapt the app after release	                    Maintenance
+
+typical artifacts:
+* Requirements Engineering      Require Specifications
+* Design                        UML Diagram
+* Implementation                source code
+* Testing                       test reports
+
+#### 2. Waterfall Model
+
+Requirements
+     │
+     ▼
+   Design
+     │
+     ▼
+Implementation
+     │
+     ▼
+   Testing
+     │
+     ▼
+ Deployment
+     │
+     ▼
+Maintenance
+
+Phase	            Activities
+Requirements	    Collect and specify needs (timetable view, connection search, delay notifications, favorites)
+Design	            Define architecture, components, interfaces, data model
+Implementation	    Code the search algorithm, notification service, UI
+Testing	            Unit, integration, system, and acceptance tests
+Deployment	        Release to the university app store
+Maintenance	        Fix defects, adapt the app after release
+
+Why Waterfall works with stable, well-understood requirements
+
+If the university knows exactly what it needs, the full scope can be specified up front. Effort, cost, and schedule can then be estimated reliably, and the documentation produced in each phase supports control and traceability. Since little will change, the lack of feedback loops costs little.
+
+Why the public transport request is problematic
+
+Once implementation has started, requirements and design are already frozen and signed off. The new integration affects the requirements, the architecture (new external interface), and possibly the existing search logic. The team would have to return to earlier phases and rework completed artifacts and code, which is expensive and delays the schedule. Waterfall has no built-in mechanism for such changes, and the new functionality would only be tested late.
+
+Two advantages and two disadvantages
+
+Advantages:
+
+Clear structure, milestones, and responsibilities make the project easy to plan and manage.
+Thorough documentation in every phase.
+
+Disadvantages:
+
+Changes to requirements are costly once a phase is closed, which is a problem here given the planned extensions (bike sharing, public transport, parking).
+Working software appears late, so user feedback and defects surface late.
+
+#### 3. V-Model
+
+Requirements Specification ─────────────────── Acceptance Testing
+        \                                            /
+         System Design ──────────────── System Testing
+                \                                /
+                 Software/Component Design ── Integration Testing
+                        \                    /
+                         Implementation ── Unit Testing
+                          (bottom of the V)
+
+                          
