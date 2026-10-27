@@ -73,3 +73,87 @@ Requirements Specification ─────────────────�
                           (bottom of the V)
 
                           
+
+
+section IV: writing and refining requirements
+
+Functional Requirements
+ID	Requirement
+FR-01	The user shall be able to create an alarm by setting a time (hour and minute).
+
+FR-02	The user shall be able to assign a repetition rule to an alarm: once, daily, weekdays only, or selected days of the week.
+
+FR-03	The user shall be able to enable and disable an existing alarm without deleting it.
+
+FR-04	The user shall be able to manage multiple alarms at the same time.
+
+FR-05	The user shall be able to edit and delete existing alarms.
+
+FR-06	The system shall trigger an audible signal at the configured time of an enabled alarm.
+
+FR-07	The user shall be able to select the alarm sound from a predefined list and set the alarm volume.
+
+FR-08	The user shall be able to dismiss a ringing alarm, which stops the signal.
+
+FR-09	The user shall be able to snooze a ringing alarm; the alarm then rings again after a configurable snooze duration (default: 5 minutes).
+
+FR-10	The user shall be able to activate vibration for an alarm in addition to the audible signal.
+
+FR-11	The system shall display the current time and the time of the next upcoming alarm.
+
+
+Non-Functional Requirements
+ID	Category	Requirement
+NFR-01	Accuracy:	An alarm shall start ringing with a deviation of at most 1 second from the configured time.
+
+NFR-02	Reliability:	Enabled alarms shall ring even if the app is closed or the screen is locked, and shall remain stored and active after a device restart.
+
+NFR-03	Usability:	A first-time user shall be able to create a one-time alarm within 30 seconds without instructions.
+
+NFR-04	Energy efficiency:	The app shall consume no more than 1 % of the battery capacity per 24 hours while no alarm is ringing.
+
+
+Refined Requirements (User, System, Software Level)
+
+FR-04: Managing multiple alarms
+Level	Refinement
+User:     As a user, I want to have several alarms set at the same time (e.g. one for weekdays and one for weekends), so that I do not have to change a single alarm again and again.
+System	The system shall store and monitor at least 20 alarms simultaneously. Each alarm shall have its own time, repetition rule, sound, and vibration setting, and shall be triggered independently of the other alarms. The system shall present all alarms as a list that shows time and enabled status.
+Software:   The software shall represent each alarm as an entity with a unique ID and persist it in local storage. A scheduler shall calculate the next trigger time of every enabled alarm and register it with the operating system. The user interface shall provide a list view with create, edit, delete, and enable/disable actions. Changing one alarm shall not modify any other alarm.
+
+FR-10: Vibration in addition to the audible signal
+Level	Refinement
+User	As a user, I want the device to vibrate when the alarm rings, so that I wake up reliably even if I do not hear the sound well (e.g. in a noisy environment or with the volume set low).
+System	If vibration is activated for an alarm, the device shall vibrate while the audible signal is playing. Sound and vibration shall stop together when the alarm is dismissed or snoozed. If the device has no vibration hardware, the option shall not be offered.
+Software	The alarm entity shall contain a boolean attribute "vibrate". When the alarm triggers and the attribute is true, the software shall start a repeating vibration pattern through the vibration interface of the operating system and stop it on dismiss or snooze. At start-up, the software shall check whether vibration hardware is available and hide the option otherwise.
+NFR-02: Reliability
+Level	Refinement
+User	As a user, I want to be able to rely on the alarm ringing, regardless of whether the app is closed, the screen is locked, or the device was restarted, so that I do not oversleep.
+System	An enabled alarm shall ring while the app is not in the foreground, while the screen is locked, and after a device restart. Alarm data shall be kept in non-volatile storage and shall be restored automatically after every restart.
+Software	The software shall schedule alarms with the exact-alarm service of the operating system instead of a timer inside the app process, so that triggering does not depend on the app running. It shall store all alarms in a local database and, on the system's boot-completed event, re-register every enabled alarm. When an alarm triggers, the software shall start a foreground service (or an equivalent mechanism) that plays the sound and shows a full-screen notification on the locked screen. It shall request the permissions required for exact alarms and notifications.
+
+
+
+
+
+
+- Was it easy to turn rough backlog items into good user stories?
+  yes, but the backlog items were too general
+
+- Was the product vision clear enough?
+  no, because there was no discussion beforehand on what product we want to build.
+
+
+- Which backlog items were hardest to understand?
+  items, that need special hardware to function and where it is unclear how to implement the feature
+  for example the barcode scanner
+
+
+- Was it difficult to agree on priorities?
+  yes because there were too many backlog items and some of them felt out of place for a fridge. 
+
+- Was it difficult to agree on story points?
+  yes because scope was unclear and items were too ambigious. 
+
+- What would help the team write better stories next time?
+  agreeing on the goal of the product and have a more detailed dicussion beforehand on the sofistication of the product.
